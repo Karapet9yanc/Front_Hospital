@@ -1,22 +1,22 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import './App.css';
-import AuthorizationComponent from './components/AuthorizationComponent/AuthorizationComponent';
-import RegistrationComponent from './components/RegistrationComponent/RegistrationComponent';
+import AuthorizationComponent from "./components/AuthorizationComponent/AuthorizationComponent";
+import RegistrationComponent from "./components/RegistrationComponent/RegistrationComponent";
+import "./App.css";
 
-function App() {
+const HospitalComponent = () => {
   return (
     <div>
-    <Switch>
-      <Route path="/authorization">
-        <AuthorizationComponent />   
-      </Route>
-      <Route path="/registration">
-        <RegistrationComponent />
-      </Route>
-      <Redirect from="/" to="/authorization" />
-    </Switch>
+      <Switch>
+        <Route path="/authorization">
+          <AuthorizationComponent />
+        </Route>
+        <Route path="/registration">
+          <RegistrationComponent />
+        </Route>
+        <Redirect from="/" to="/authorization" />
+      </Switch>
     </div>
   );
 }
 
-export default App;
+export default HospitalComponent;

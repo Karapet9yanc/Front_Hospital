@@ -1,9 +1,8 @@
 import React from "react";
 import Body from "../../img/body.png";
 import { Link } from "react-router-dom";
-import "../AuthorizationComponent/Authorization.scss"
 import HeaderComponent from "../HeaderComponent/HeaderComponent";
-
+import "../AuthorizationComponent/Authorization.scss"
 
 const AuthorizationComponent = () => {
   return (
@@ -18,14 +17,14 @@ const AuthorizationComponent = () => {
             type="text"
             name="name"
             placeholder="Login"
-            
+
           />
           <label>Password:</label>
           <input
             type="password"
             name="name"
             placeholder="Password"
-            
+
           />
           <div className="click-element">
             <button>Войти</button>
