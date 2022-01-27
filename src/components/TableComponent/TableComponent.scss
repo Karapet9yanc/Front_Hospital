@@ -1,0 +1,16 @@
+.div-table {
+  display: flex;
+  margin-top: 2%;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+
+  .table-head {
+    background: #C4C4C4;
+  }
+  .table {
+    width: 70%;
+    height: 100%;
+  }
+}

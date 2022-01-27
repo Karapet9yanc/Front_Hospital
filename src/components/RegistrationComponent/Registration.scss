@@ -28,7 +28,7 @@ body {
     color: black;
     padding: 40px;
     z-index: 2;
-    height: 63%;
+    height: 66%;
     width: 28%;
 
     label {
@@ -53,6 +53,13 @@ body {
       height: 9%;
     }
 
+    .error{
+      background-color: red;
+      color: red;
+      height: 5%;
+      width: 50%;
+    }
+    
     h1 {
       height: 42px;
       font-family: Roboto;
