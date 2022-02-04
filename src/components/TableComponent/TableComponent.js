@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import moment from "moment";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,57 +7,67 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import "../TableComponent/TableComponent.scss";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteFunctionComponent from "../../DeleteFunctionComponent/DeleteFunctionComponent";
+import EditeFunctionComponent from "../../EditeFunctionComponent/EditeFunctionComponent";
+import "./TableComponent.scss";
 
-const TableComponent = () => {
-  const [problem, setProblem] = useState([])
-  const nameOfHeadTable = ['Имя', 'Врач', 'Дата', 'Жалобы']
+const TableComponent = ({ problems, setProblem }) => {
+  const [modalWindow, setModalWimdow] = useState(false);
+  const [modalWindowEdit, setModalWimdowEdit] = useState(false);
+  const [visit, setVisit] = useState(-1);
+  const nameOfHeadTable = ['Имя', 'Врач', 'Дата', 'Жалобы'];
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/allProblems", {
-        // headers: {
-        //   // token: localStorage.getItem("token"),
-        // },
-      })
-      .then((res) => {
-        setProblem(res.data.data);
-      })
-  }, []);
+  const deleteModal = (index) => {
+    setVisit(index);
+    setModalWimdow(true);
+  };
+
+  const editModal = (index) => {
+    setVisit(index);
+    setModalWimdowEdit(true);
+  };
+
+  const closeModal = () => {
+    setModalWimdowEdit(false);
+    setModalWimdow(false);
+    setVisit(-1);
+  };
 
   return (
     <div className="div-table">
       <div className="table">
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className='class'>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead className="table-head">
               <TableRow>
-                {nameOfHeadTable.map((element, index) => {
-                  return <TableCell key={`table-${index}`} align="center">{element}</TableCell>
-                })}
+                {nameOfHeadTable.map((element) => <TableCell key={`table-${element}`} align="center">{element}</TableCell>)}
                 <TableCell align="center"></TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              {problem.map((row, index) => (
-                <TableRow
-                  key={index}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.name}
+            <TableBody className="div-appeal">
+              {problems.map((row, index) => (
+                <TableRow key={`row ${index}`}>
+                  <TableCell component="th" scope="row" className="div-appeal">{row.name}</TableCell>
+                  <TableCell className="div-appeal" align="center">{row.doctor}</TableCell>
+                  <TableCell className="div-appeal" align="center">{moment(row.date).format("DD.MM.YYYY")}</TableCell>
+                  <TableCell className="div-appeal" align="center">{row.problem}</TableCell>
+                  <TableCell className="div-appeal-function">
+                    <DeleteOutlineIcon onClick={() => deleteModal(index)}></DeleteOutlineIcon>
+                    <EditIcon onClick={() => editModal(index)} />
                   </TableCell>
-                  <TableCell align="center">{row.doctor}</TableCell>
-                  <TableCell align="center">{row.date}</TableCell>
-                  <TableCell align="center">{row.problem}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+        {modalWindow && (<DeleteFunctionComponent visitId={problems[visit]._id}
+          setProblem={setProblem} closeModal={closeModal} />)}
+        {modalWindowEdit && (<EditeFunctionComponent setProblem={setProblem} visit={problems[visit]} closeModal={closeModal} />)}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TableComponent
+export default TableComponent;

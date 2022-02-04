@@ -4,7 +4,6 @@ import RegistrationComponent from "./components/RegistrationComponent/Registrati
 import MainComponent from "./components/MainComponent/MainComponent";
 import "./App.css";
 
-
 const HospitalComponent = () => {
   return (
     <div>

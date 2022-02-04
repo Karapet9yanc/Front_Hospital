@@ -13,7 +13,7 @@ const HeaderComponent = (props) => {
       </div>
        {props.children}
     </div>
-  )
-}
+  );
+};
 
-export default HeaderComponent
+export default HeaderComponent;

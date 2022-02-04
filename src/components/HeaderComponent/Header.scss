@@ -8,27 +8,24 @@
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
   z-index: 2;
 }
-  .header-elements {
-    width: 90%;
-    left: 0px;
-    top: 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
 
-    p {
-      font-weight: 300;
-      font-size: 45px;
-      width: 50%;
-      height: 55px;
-      margin-left: 8%;
-    }
+.header-elements {
+  width: 90%;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-    img {
-      margin-left: 5%;
-    }
+  p {
+    font-weight: 300;
+    font-size: 45px;
+    width: 50%;
+    height: 55px;
+    margin-left: 8%;
   }
 
-
-
-
+  img {
+    margin-left: 5%;
+  }
+}

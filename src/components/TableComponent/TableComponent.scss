@@ -9,8 +9,25 @@
   .table-head {
     background: #C4C4C4;
   }
+
   .table {
     width: 70%;
     height: 100%;
+  }
+
+  .class.MuiPaper-root {
+    border: 0px solid black;
+  }
+
+  .MuiTableRow-root{
+    border: 2px solid black;
+  }
+
+  .MuiTableCell-root{
+    border-right: 2px solid black;
+  }
+  
+  .div-appeal-function{
+    width: 9%;
   }
 }

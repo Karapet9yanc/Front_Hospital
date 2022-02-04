@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import HeaderComponent from "../HeaderComponent/HeaderComponent";
+import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import Body from "../../img/body.png";
+import HeaderComponent from "../HeaderComponent/HeaderComponent";
 import "../AuthorizationComponent/Authorization.scss";
 
 const AuthorizationComponent = () => {
-  const [login, setState] = useState("")
-  const [password, setPassword] = useState("")
+  const [login, setState] = useState("");
+  const [password, setPassword] = useState("");
   const [snackbar, setSnackbar] = useState({ open: false, message: '' });
   const { open, message } = snackbar;
   const history = useHistory("");
@@ -27,10 +27,10 @@ const AuthorizationComponent = () => {
               localStorage.setItem("token", res.data);
               history.push("/main");
             });
-        } catch { setSnackbar({ open: true, message: 'Неверный логин или пароль' }) }
-      } else { setSnackbar({ open: true, message: 'Данные введены некоректно, проверьте поле пароль' }) }
-    } else { setSnackbar({ open: true, message: 'Введите логин и пароль' }) }
-  }
+        } catch { setSnackbar({ open: true, message: 'Неверный логин или пароль' }) };
+      } else { setSnackbar({ open: true, message: 'Данные введены некоректно, проверьте поле пароль' }) };
+    } else { setSnackbar({ open: true, message: 'Введите логин и пароль' }) };
+  };
 
 
   return (
@@ -46,16 +46,14 @@ const AuthorizationComponent = () => {
             value={login}
             name="name"
             placeholder="Login"
-            onChange={(e) => setState(e.target.value)}
-          />
+            onChange={(e) => setState(e.target.value)} />
           <label>Password:</label>
           <input
             type="password"
             name="name"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            onChange={(e) => setPassword(e.target.value)} />
           <div className="click-element">
             <button onClick={() => Authorization()}>Войти</button>
             <Link to="/registration">
@@ -70,7 +68,7 @@ const AuthorizationComponent = () => {
         autoHideDuration={6000}
         message={message} />
     </div>
-  )
-}
+  );
+};
 
-export default AuthorizationComponent
+export default AuthorizationComponent;

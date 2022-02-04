@@ -18,20 +18,20 @@
   height: 100%;
   justify-content: space-around;
 
-  input {
+  .input {
+    background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     border-radius: 4px;
-    height: 38%;
     width: 88%;
   }
 
   button {
     background-color: white;
     color: black;
-    height: 38%;
+    height: 45%;
     width: 54%;
-    margin-top: 14%;
+    margin-top: 15%;
   }
 
   .div-elements{

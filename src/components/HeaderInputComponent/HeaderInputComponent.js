@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
+import moment from "moment";
+import { TextField } from "@mui/material";
 import "../HeaderInputComponent/HeaderInputComponent.scss";
 
-const HeaderInputComponent = () => {
-
+const HeaderInputComponent = ({ problems, setProblem }) => {
+  const toDay = moment(new Date()).format("DD.MM.YYYY");
   const [value, setValue] = useState({
     name: "",
     doctor: "",
-    date: new Date(),
+    date: toDay,
     problem: ""
-  })
-  const { name, doctor, date, problem } = value
-
+  });
+  const { name, doctor, date, problem } = value;
   const addValueToTable = async () => {
     await axios
       .post("http://localhost:8000/newProblems", {
@@ -21,38 +22,49 @@ const HeaderInputComponent = () => {
         problem
       })
       .then((res) => {
-        setValue("")
-      })
-  }
+        problems.push(res.data.data);
+        setProblem([...problems])
+        setValue({
+          name: "",
+          doctor: "",
+          date: toDay,
+          problem: "",
+        });
+      });
+  };
 
   return (
     <div className="div-input">
       <div className="header-input">
         <div className="div-elements">
           <p>Имя:</p>
-          <input
+          <TextField
+            className="input"
             value={name || ""}
             onChange={(e) => setValue({ ...value, name: e.target.value })}
             type="text" />
         </div>
         <div className="div-elements">
-          <p>Врачь:</p>
-          <input
+          <p>Врач:</p>
+          <TextField
+            className="input"
+            id="outlined-basic"
             value={doctor || ""}
             type="text"
             onChange={(e) => setValue({ ...value, doctor: e.target.value })} />
         </div>
         <div className="div-elements">
           <p>Дата:</p>
-          <input
-            value={date || ""}
+          <TextField
+            className="input"
+            value={date}
             type="date"
-            onChange={(e) => setValue({ ...value, date: e.target.value })}
-          />
+            onChange={(e) => setValue({ ...value, date: e.target.value })} />
         </div>
         <div className="div-elements">
           <p>Жалобы:</p>
-          <input
+          <TextField
+            className="input"
             value={problem || ""}
             type="text"
             onChange={(e) => setValue({ ...value, problem: e.target.value })} />
@@ -62,7 +74,7 @@ const HeaderInputComponent = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeaderInputComponent
+export default HeaderInputComponent;
